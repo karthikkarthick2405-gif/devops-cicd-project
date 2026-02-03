@@ -32,5 +32,22 @@ pipeline {
                 """
             }
         }
+
+        stage('Deploy to EC2') {
+    steps {
+        sh """
+        ssh -o StrictHostKeyChecking=no ubuntu@51.21.181.68 '
+            cd /home/ubuntu || exit 1
+            rm -rf devops-cicd-project || true
+            git clone https://github.com/karthikkarthick2405-gif/devops-cicd-project.git
+            cd devops-cicd-project
+            docker build -t devops-cicd-app:latest -f docker/Dockerfile .
+            docker rm -f devops-cicd-app || true
+            docker run -d -p 5000:5000 --name devops-cicd-app devops-cicd-app:latest
+        '
+        """
+    }
+}
+
     }
 }
