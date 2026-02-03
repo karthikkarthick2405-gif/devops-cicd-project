@@ -2,10 +2,10 @@ pipeline {
     agent any
 
     stages {
+
         stage('Checkout Code') {
             steps {
-                git branch: 'main',
-                    url: 'https://github.com/karthikkarthick2405-gif/devops-cicd-project.git'
+                checkout scm
             }
         }
 
@@ -15,11 +15,11 @@ pipeline {
             }
         }
 
-        stage('Run Docker Container') {
+        stage('Run Container') {
             steps {
                 sh '''
-                docker rm -f devops-flask || true
-                docker run -d -p 5000:5000 --name devops-flask devops-cicd-app
+                docker rm -f devops-cicd-app || true
+                docker run -d -p 5000:5000 --name devops-cicd-app devops-cicd-app
                 '''
             }
         }
