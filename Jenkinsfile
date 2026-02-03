@@ -22,17 +22,7 @@ pipeline {
             }
         }
 
-        stage('Deploy to EC2') {
-            steps {
-                sh """
-                ssh -o StrictHostKeyChecking=no ${EC2_USER}@${EC2_HOST} '
-                    docker rm -f ${APP_NAME} || true
-                    docker run -d -p ${APP_PORT}:5000 --name ${APP_NAME} ${APP_NAME}:latest
-                '
-                """
-            }
-        }
-
+        
         stage('Deploy to EC2') {
     steps {
         sh """
