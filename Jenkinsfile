@@ -3,7 +3,7 @@ pipeline {
 
     environment {
         EC2_USER = "ubuntu"
-        EC2_HOST = "51.21.181.68"
+        EC2_HOST = "16.171.206.83"
         APP_NAME = "devops-cicd-app"
         APP_PORT = "5000"
     }
