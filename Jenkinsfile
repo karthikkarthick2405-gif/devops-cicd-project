@@ -26,7 +26,7 @@ pipeline {
         stage('Deploy to EC2') {
     steps {
         sh """
-        ssh -o StrictHostKeyChecking=no ubuntu@51.21.181.68 '
+        ssh -o StrictHostKeyChecking=no ubuntu@16.171.206.83 '
             cd /home/ubuntu || exit 1
             rm -rf devops-cicd-project || true
             git clone https://github.com/karthikkarthick2405-gif/devops-cicd-project.git
